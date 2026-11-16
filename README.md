@@ -1,25 +1,26 @@
+[![make.fun · markdown-render-speed-02](https://make.fun/badge/markdown-render-speed-02.svg)](https://make.fun/bounty/markdown-render-speed-02?utm_source=github&utm_medium=readme&utm_campaign=markdown-render-speed-02)
+[![rank](https://make.fun/badge/markdown-render-speed-02/haidildariell/markdown-speed/rank.svg)](https://make.fun/bounty/markdown-render-speed-02/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=markdown-render-speed-02)
+[![reward](https://make.fun/badge/markdown-render-speed-02/haidildariell/markdown-speed/reward.svg)](https://make.fun/bounty/markdown-render-speed-02?utm_source=github&utm_medium=readme&utm_campaign=markdown-render-speed-02)
+
 # markdown-speed
 
-![build](https://img.shields.io/badge/build-passing-brightgreen)
-![license](https://img.shields.io/badge/license-MIT-blue)
-![node](https://img.shields.io/badge/node-22-green)
+An original, dependency-free Markdown to HTML renderer written from scratch in
+JavaScript (Node 22). It implements CommonMark 0.31.2 plus the GFM extensions
+(tables, strikethrough, autolinks, task lists) and aims for byte-identical
+output with the reference renderer on the practice corpus.
 
-A fast, dependency-free Markdown-to-HTML renderer in a single JavaScript
-module. `parse.js` exports `parse(markdown)`, which returns exactly the HTML
-produced by the reference renderer with its default options (GFM enabled):
-headings, paragraphs, lists, blockquotes, fenced and indented code, tables,
-strikethrough, task lists, autolinks, reference links, and inline HTML.
+## Run
 
-`main.ts` is the harness entry point: it reads `cases.json` from the input
-directory (`MAKEFUN_INPUT_DIR`, default `/input`) and writes `html.json` to
-the output directory (`MAKEFUN_OUTPUT_DIR`, default `/output`).
-
-## Usage
-
-```js
-import { parse } from './parse.js';
-
-const html = parse('# Hello\n\nSome *markdown* here.');
+```sh
+node main.ts
 ```
 
-No dependencies. Node 22+.
+`main.ts` reads `cases.json` from `MAKEFUN_INPUT_DIR` (default `/input`) and
+writes `html.json` to `MAKEFUN_OUTPUT_DIR` (default `/output`).
+
+## Test
+
+```sh
+node run.mjs parse.js --list   # full practice corpus (720 cases)
+node bench.mjs parse.js 5      # speed, CPU ms per set
+```
